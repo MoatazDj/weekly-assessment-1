@@ -8,12 +8,23 @@ var HashTable = function() {
 
 
 HashTable.prototype.insert = function(key, value) {
+  if (this._count<this._limit) {
+    this._storage.push({key, value})
+    this._count++
+  }
 };
 
 
-HashTable.prototype.remove = function(key) {
+HashTable.prototype.remove = function(key1) {
+     for (let i = 0; i < this._storage.length; i++) {
+         if (this._storage[i][key]===key1) {
+           var deletedVal = this._storage[i]
+           delete this._storage[i]
+            this._count--
+         }
+         return deletedVal
+     }
 };
-
 
 
 HashTable.prototype.retrieve = function(key) {
